@@ -10,7 +10,13 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.
 sudo apt-get update
 
 echo "# 도커 관련 설치"
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin
+
+echo "# 도커 컴포즈 설치"
+sudo curl -L "https://github.com/docker/compose/releases/download/v5.0.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+
 
 echo "# 도커 그룹이 자동으로 생성되지 않는다면 아래 필요..."
 echo "sudo addgroup docker"
